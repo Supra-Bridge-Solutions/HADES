@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 def scrape_site(url):
     response = requests.get(url)
