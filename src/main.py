@@ -2,6 +2,7 @@ from src.input_handler import validate_url
 from src.scraper.site_scraper import scrape_site
 from src.scanner.vulnerability_scanner import run_nmap_scan
 from src.utils.logger import log
+from src.ai.malicious_url_classifier import URLClassifier
 
 def main():
     url = input("Enter the website URL: ")
@@ -23,3 +24,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def run_url_classification():
+    classifier = URLClassifier()
+    classifier.load_model("models/url_classifier.pkl")
+    urls_to_check = ["http://unknown-site.net", "http://safe-site.com"]
+    predictions = classifier.predict(urls_to_check)
+
+    for url, prediction in zip(urls_to_check, predictions):
+        status = "Malicious" if prediction == 1 else "Safe"
+        print(f"[INFO] {url}: {status}")
+
+
+if __name__ == "__main__":
+    run_url_classification()
