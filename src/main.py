@@ -4,7 +4,7 @@ from src.scanner.vulnerability_scanner import run_nmap_scan
 from src.utils.logger import log
 from src.ai.malicious_url_classifier import URLClassifier
 
-def main():
+def main_workflow():
     url = input("Enter the website URL: ")
     try:
         validated_url = validate_url(url)
@@ -22,9 +22,6 @@ def main():
         log(f"Error: {str(e)}")
         print(f"Error: {str(e)}")
 
-if __name__ == "__main__":
-    main()
-
 def run_url_classification():
     classifier = URLClassifier()
     classifier.load_model("models/url_classifier.pkl")
@@ -35,6 +32,6 @@ def run_url_classification():
         status = "Malicious" if prediction == 1 else "Safe"
         print(f"[INFO] {url}: {status}")
 
-
 if __name__ == "__main__":
+    main_workflow()
     run_url_classification()
