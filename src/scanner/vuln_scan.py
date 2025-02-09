@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import subprocess
+import nmap
 
 # Function to scrape the site
 def scrape_site(url):
