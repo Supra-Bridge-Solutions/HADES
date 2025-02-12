@@ -1,8 +1,8 @@
 from rich.console import Console
 from src.input_handler import validate_url
 from src.scraper.site_scraper import scrape_site
-from src.scanner.vuln_scanner import run_nmap_scan
-from src.ai.malicious_url_classifier import URLClassifier
+from src.scanner.vuln_scan import run_nmap_scan
+from models.malicious_url_classifier import URLClassifier
 
 console = Console()
 
