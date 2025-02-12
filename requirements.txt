@@ -3,3 +3,8 @@ numpy
 pandas
 matplotlib
 seaborn
+nmap
+beautifulsoup
+validators
+requests
+beautifulsoup4
