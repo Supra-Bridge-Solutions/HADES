@@ -8,6 +8,7 @@ from src.scraper.site_scraper import scrape_site
 from src.scanner.vuln_scan import run_nmap_scan
 from src.utils.logger import log_info, log_error  # Import logging functions
 from models.malicious_url_classifier import URLClassifier
+from bs4 import Comment
 
 def main_workflow():
     url = input("Enter the website URL: ")
