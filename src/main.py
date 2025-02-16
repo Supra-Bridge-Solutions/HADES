@@ -27,6 +27,7 @@ def main_workflow():
         log_info(f"Scan Results: {scan_results}")
         print(f"Scan Results: {scan_results}")
         
+        
     except Exception as e:
         log_error(f"Error: {str(e)}")
         print(f"Error: {str(e)}")
