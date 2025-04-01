@@ -1,0 +1,6 @@
+PyQt5
+rich
+nmap
+scikit-learn
+requests
+beautifulsoup4
