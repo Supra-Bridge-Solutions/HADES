@@ -1,10 +1,6 @@
-scikit-learn
-numpy
-pandas
-matplotlib
-seaborn
+PyQt5
+rich
 nmap
-beautifulsoup
-validators
+scikit-learn
 requests
 beautifulsoup4
