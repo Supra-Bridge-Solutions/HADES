@@ -1,8 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../models")))
-
-from malicious_url_classifier import URLClassifier
+from models.malicious_url_classifier import URLClassifier
 
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
 
