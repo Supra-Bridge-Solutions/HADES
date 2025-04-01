@@ -1,11 +1,58 @@
-# HADES
-## HADES: **Highly Aggressive Defence Exploitation System**
-### 🔥 Coming Soon...
-HADES is a cutting-edge cybersecurity tool designed for advanced system exploitation and intelligent defense mechanisms. Whether you're conducting security audits, simulating attacks, or hardening your environment, HADES combines powerful AI-driven insights with traditional scanning techniques to push the boundaries of cybersecurity.
+# HADES - AI Cyber Recon Toolkit GUI
 
-## -💡 Key Features (Planned)
-- 🚀 AI-Powered Anomaly Detection — Identify and predict vulnerabilities using machine learning models.
-- 🔐 Vulnerability Scanning — Fast and thorough system inspection for known threats.
-- 🌐 Smart Web Scraping — Extract valuable insights from external resources with intelligent scraping.
+## Overview
+HADES is an AI Cyber Recon Toolkit designed to assist users in web scraping, vulnerability scanning, malicious URL detection, and report generation. This GUI application provides a user-friendly interface to access the functionalities of the toolkit.
 
-![hades_logo_2](https://github.com/user-attachments/assets/2789b76c-1fe6-4431-9f3b-5cb7c17dbb89)
+## Features
+- **Web Scraper**: Easily scrape data from websites by entering the target URL.
+- **Vulnerability Scanner**: Scan for vulnerabilities on specified IPs or domains.
+- **Malicious URL Detection**: Analyze URLs to determine if they are safe or malicious.
+- **Report Generation**: Generate comprehensive reports based on the performed tasks.
+
+## Installation
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd hades-gui
+   ```
+
+2. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+## Usage
+To run the application, execute the following command:
+```
+python main.py
+```
+
+## Project Structure
+```
+hades-gui
+├── src
+│   ├── gui
+│   │   ├── main_window.py
+│   │   ├── scraper_tab.py
+│   │   ├── scanner_tab.py
+│   │   ├── detector_tab.py
+│   │   └── report_tab.py
+│   ├── input_handler.py
+│   ├── scraper
+│   │   └── site_scraper.py
+│   ├── scanner
+│   │   └── vuln_scan.py
+│   ├── models
+│   │   └── malicious_url_classifier.py
+│   └── utils
+│       └── __init__.py
+├── requirements.txt
+├── main.py
+└── README.md
+```
+
+## Contributing
+Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
