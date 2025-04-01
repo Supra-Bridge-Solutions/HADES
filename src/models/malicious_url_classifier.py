@@ -3,7 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 
-from sklearn.externals import joblib
+import joblib
 
 class URLClassifier:
     def __init__(self):
