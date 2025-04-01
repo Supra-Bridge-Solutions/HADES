@@ -1,4 +1,8 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget, QVBoxLayout, QWidget
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget
 from scraper_tab import ScraperTab
 from scanner_tab import ScannerTab
 from detector_tab import DetectorTab
@@ -27,7 +31,6 @@ class MainWindow(QMainWindow):
         self.tabs.addTab(self.report_tab, "Generate Report")
 
 if __name__ == "__main__":
-    import sys
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()

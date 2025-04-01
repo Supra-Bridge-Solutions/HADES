@@ -1,38 +1,33 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from src.input_handler import validate_url
 from src.scraper.site_scraper import scrape_site
-from rich.console import Console
 
 class ScraperTab(QWidget):
     def __init__(self):
         super().__init__()
-        self.console = Console()
-        self.init_ui()
-
-    def init_ui(self):
-        layout = QVBoxLayout()
+        self.layout = QVBoxLayout()
+        self.setLayout(self.layout)
 
         self.url_input = QLineEdit(self)
         self.url_input.setPlaceholderText("Enter target URL")
-        layout.addWidget(self.url_input)
+        self.layout.addWidget(self.url_input)
 
-        self.scrape_button = QPushButton("Scrape", self)
-        self.scrape_button.clicked.connect(self.run_scraper)
-        layout.addWidget(self.scrape_button)
+        self.scrape_button = QPushButton("Scrape Site", self)
+        self.scrape_button.clicked.connect(self.scrape_site)
+        self.layout.addWidget(self.scrape_button)
 
-        self.result_display = QTextEdit(self)
-        self.result_display.setReadOnly(True)
-        layout.addWidget(self.result_display)
+        self.result_label = QLabel(self)
+        self.layout.addWidget(self.result_label)
 
-        self.setLayout(layout)
-
-    def run_scraper(self):
+    def scrape_site(self):
         url = self.url_input.text().strip()
         try:
             validated_url = validate_url(url)
-            self.console.print(f"[green]Scraping {validated_url}...[/green]")
             scraped_data = scrape_site(validated_url)
-            self.result_display.setPlainText(f"[green]Scraped Data:\n{scraped_data}[/green]")
+            self.result_label.setText(f"Scraped Data: {scraped_data}")
         except Exception as e:
-            self.console.print(f"[red]Error: {e}[/red]")
-            self.result_display.setPlainText(f"[red]Error: {e}[/red]")
+            self.result_label.setText(f"Error: {e}")
