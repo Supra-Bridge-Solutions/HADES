@@ -1,13 +1,11 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-print(sys.path)
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget
-from scraper_tab import ScraperTab
-from scanner_tab import ScannerTab
-from detector_tab import DetectorTab
-from report_tab import ReportTab
+from src.gui.scraper_tab import ScraperTab
+from src.gui.scanner_tab import ScannerTab
+from src.gui.detector_tab import DetectorTab
+from src.gui.report_tab import ReportTab
 
 class MainWindow(QMainWindow):
     def __init__(self):
