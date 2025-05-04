@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"
 from bs4 import BeautifulSoup
 import requests
 
-def scrape_site(url):
+def r1(url):
     response = requests.get(url)
     if response.status_code != 200:
         raise Exception(f"Failed to retrieve the URL: {url} with status code: {response.status_code}")

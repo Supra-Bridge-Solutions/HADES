@@ -13,6 +13,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("HADES - AI Cyber Recon Toolkit")
         self.setGeometry(100, 100, 800, 600)
 
+        self.setStyleSheet("background-color: #7e7b7a;")  
+
         self.tabs = QTabWidget()
         self.setCentralWidget(self.tabs)
 
