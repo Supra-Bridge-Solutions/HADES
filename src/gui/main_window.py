@@ -1,8 +1,7 @@
 import sys
 import os
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget, QLabel
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget, QVBoxLayout, QWidget
 from PyQt5.QtCore import Qt
 from src.gui.scraper_tab import ScraperTab
 from src.gui.scanner_tab import ScannerTab
@@ -15,50 +14,41 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("HADES - AI Cyber Recon Toolkit")
         self.setGeometry(100, 100, 800, 600)
 
-        self.setStyleSheet("background-color: #5C554E;")  
+        # REVIEW: Using a QSS (Qt Style Sheet) to set the background image as the watermark.
+        # The image should be pre-processed to have reduced opacity since QSS does not support alpha for images.
+        self.main_widget = QWidget(self)
+        self.main_widget.setContentsMargins(0, 0, 0, 0)
+        self.main_widget.setStyleSheet("""
+            QWidget {
+                background-color: #4F5157;  /* Fallback background color */
+                background-image: url('src/utils/hades_logo_.png');  /* Path to your logo with pre-adjusted opacity */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+        """)
+        self.setCentralWidget(self.main_widget)
 
-        self.tabs = QTabWidget()
-        self.setCentralWidget(self.tabs)
+        # REVIEW: Create a layout for stacking UI elements atop the background.
+        self.ui_layout = QVBoxLayout(self.main_widget)
+        self.ui_layout.setContentsMargins(0, 0, 0, 0)
 
+        # REVIEW: Initialize the tabs (which will appear on top of the background watermark).
         self.init_tabs()
 
-        # Add watermark logo
-        self.add_watermark()
-
     def init_tabs(self):
-        self.scraper_tab = ScraperTab()
-        self.scanner_tab = ScannerTab()
-        self.detector_tab = DetectorTab()
-        self.report_tab = ReportTab()
-
-        self.tabs.addTab(self.scraper_tab, "Web Scraper")
-        self.tabs.addTab(self.scanner_tab, "Vulnerability Scanner")
-        self.tabs.addTab(self.detector_tab, "Malicious URL Detector")
-        self.tabs.addTab(self.report_tab, "Generate Report")
-
-    def add_watermark(self):
-        # Create a QLabel for the watermark
-        self.watermark_label = QLabel(self)
-        self.watermark_label.setAlignment(Qt.AlignCenter)
-
-        # Load the watermark image
-        pixmap = QPixmap("/utils/Untitled_design.png")  # Replace with the path to your logo
-        self.watermark_label.setPixmap(pixmap)
-
-        # Resize the QLabel to fit the window
-        self.watermark_label.setGeometry(0, 0, self.width(), self.height())
-        self.watermark_label.setScaledContents(True)
-        self.watermark_label.setStyleSheet("opacity: 0.2;")  # Optional: Make it semi-transparent
-
-        # Ensure the watermark stays in the background
-        self.watermark_label.lower()
-
-        # Update watermark size on window resize
-        self.resizeEvent = self.update_watermark_size
-
-    def update_watermark_size(self, event):
-        self.watermark_label.setGeometry(0, 0, self.width(), self.height())
-        super().resizeEvent(event)
+        """
+        Initializes the QTabWidget with the various application tabs.
+        REVIEW:
+          - Consider adding error handling if a tab fails to initialize.
+          - This widget is added to the main layout so it appears over the background image.
+        """
+        self.tabs = QTabWidget(self)
+        self.tabs.addTab(ScraperTab(), "Web Scraper")
+        self.tabs.addTab(ScannerTab(), "Vulnerability Scanner")
+        self.tabs.addTab(DetectorTab(), "Malicious URL Detector")
+        self.tabs.addTab(ReportTab(), "Generate Report")
+        self.ui_layout.addWidget(self.tabs)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
