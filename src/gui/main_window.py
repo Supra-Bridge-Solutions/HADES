@@ -21,7 +21,6 @@ class MainWindow(QMainWindow):
         self.main_widget.setStyleSheet("""
             QWidget {
                 background-color: #4F5157;  /* Fallback background color */
-                background-image: url('src/utils/hades_logo_.png');  /* Path to your logo with pre-adjusted opacity */
                 background-position: center;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
