@@ -1,9 +1,6 @@
 
-import sys
-sys.path.append('/opt/lampp/htdocs/projects/HADES/src/models')
-from models.malicious_url_classifier import URLClassifier
-
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
+from src.models.malicious_url_classifier import URLClassifier
 
 class DetectorTab(QWidget):
     def __init__(self):

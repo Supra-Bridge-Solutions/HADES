@@ -43,10 +43,19 @@ class MainWindow(QMainWindow):
           - This widget is added to the main layout so it appears over the background image.
         """
         self.tabs = QTabWidget(self)
-        self.tabs.addTab(ScraperTab(), "Web Scraper")
-        self.tabs.addTab(ScannerTab(), "Vulnerability Scanner")
+        scanner_tab = ScannerTab()
+        scraper_tab = ScraperTab()
+        report_tab = ReportTab()
+        scanner_tab.scan_completed.connect(report_tab.set_result)
+        scraper_tab.scrape_completed.connect(report_tab.set_result)
+        scraper_tab.view_report_requested.connect(
+            lambda: (report_tab.generate_report(), self.tabs.setCurrentWidget(report_tab))
+        )
+
+        self.tabs.addTab(scraper_tab, "Web Scraper")
+        self.tabs.addTab(scanner_tab, "Vulnerability Scanner")
         self.tabs.addTab(DetectorTab(), "Malicious URL Detector")
-        self.tabs.addTab(ReportTab(), "Generate Report")
+        self.tabs.addTab(report_tab, "Generate Report")
         self.ui_layout.addWidget(self.tabs)
 
 if __name__ == "__main__":
