@@ -1,5 +1,9 @@
 # HADES - AI Cyber Recon Toolkit GUI
 
+<p align="center">
+  <img src="src/docs/images/Hades.png" alt="HADES logo" width="220">
+</p>
+
 ## Overview
 HADES is an AI Cyber Recon Toolkit designed to assist users in web scraping, vulnerability scanning, malicious URL detection, and report generation. This GUI application provides a user-friendly interface to access the functionalities of the toolkit.
 
@@ -26,6 +30,14 @@ To run the application, execute the following command:
 ```
 python main.py
 ```
+
+### Example Usage
+
+Enter a website URL in the **Web Scraper** tab and select **Scrape Site**. After the scrape completes, choose **View Results in Report Tab** to review the page title, headings, links, and paragraphs.
+
+This screenshot shows a successful scrape of Hack The Box:
+
+![HADES showing successful Hack The Box scrape results in the Report tab](src/docs/images/2026-10-17_15-01.png)
 
 ## Project Structure
 ```
