@@ -1,1 +1,1 @@
-from models.malicious_url_classifier import URLClassifier
+from .malicious_url_classifier import URLClassifier
