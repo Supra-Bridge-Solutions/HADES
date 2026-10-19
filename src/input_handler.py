@@ -1,22 +1,25 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-
-
+from ipaddress import IPv4Address, AddressValueError
 from urllib.parse import urlparse
 
+
 def validate_url(url):
-    parsed = urlparse(url)
-    return all([parsed.scheme, parsed.netloc])  # Ensure the URL has a scheme and netloc
+    if not isinstance(url, str):
+        return False
+
+    parsed = urlparse(url.strip())
+    return parsed.scheme.lower() in {"http", "https"} and bool(parsed.hostname)
+
 
 def validate_ip(ip):
-    parts = ip.split('.')
-    if len(parts) != 4:
+    if not isinstance(ip, str):
         return False
-    for part in parts:
-        if not part.isdigit() or not 0 <= int(part) <= 255:
-            return False
+
+    try:
+        IPv4Address(ip.strip())
+    except AddressValueError:
+        return False
     return True
+
 
 def validate_input(input_type, value):
     if input_type == 'url':
